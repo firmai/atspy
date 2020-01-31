@@ -24,8 +24,5 @@ forecast_in, performance = am.forecast_insample()
 forecast_out = am.forecast_outsample()
 ```
 
-#### Example Outputs
-
 ![](https://github.com/firmai/atspy/blob/master/atspy_files/Screen%20Shot%202020-01-31%20at%207.51.07%20PM.png)
 
-![](https://raw.githubusercontent.com/firmai/atspy/master/atspy_files/Screen%20Shot%202020-01-31%20at%207.54.00%20PM.png)
