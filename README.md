@@ -23,3 +23,5 @@ am = AutomatedModel(df = df , model_list=model_list, season="infer_from_data",fo
 forecast_in, performance = am.forecast_insample()
 forecast_out = am.forecast_outsample()
 ```
+
+![](https://github.com/firmai/atspy/blob/master/atspy_files/Screen%20Shot%202020-01-31%20at%207.51.07%20PM.png)
