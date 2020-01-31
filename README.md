@@ -7,6 +7,9 @@
 1. So far I have only tested monthly data, and only one particular dataseries. 
 1. More work ahead; suggestions and criticisms appreciated, use issues tab.
 
+```
+pip install atspy
+```
 
 #### First Step Load Pandas DataFrame
 ```python
