@@ -7,6 +7,7 @@
 1. So far I have only tested monthly data, and only one particular dataseries. 
 1. More work ahead; suggestions and criticisms appreciated, use issues tab.
 
+#### Install
 ```
 pip install atspy
 ```
