@@ -1,4 +1,4 @@
-# Automated Time Series
+# Automated Time Series (AtsPy)
 
 A few rules.
 1. No user input except for nicely cleaned data according to standards.
