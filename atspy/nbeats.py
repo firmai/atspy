@@ -1,4 +1,5 @@
-## NBEATS
+
+## NBEATS UTILS
 # plot utils.
 def plot_scatter(*args, **kwargs):
     plt.plot(*args, **kwargs)
