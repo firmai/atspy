@@ -17,14 +17,14 @@ from atspy import AutomatedModel
 1. Identifies and makes accessible the best model for your time series. 
 1. Combines the predictions of all these models in a simple (average) or complex (GBM) ensemble for improved performance.
 
-#### AtsPy Constraints. 
+#### AtsPy Progress. 
 
 1. Univariate forecasting only (single column). 
 1. Holt, ETS, ARIMA, Prophet, Gluonts, N-BEATS, and PYAF.
 1. So far I have only tested monthly data, and only one particular dataseries. 
 1. More work ahead; suggestions and criticisms appreciated, use issues tab.
 
-#### Future Work on AtsPy.
+#### Future AtsPy Development.
 
 1. The creation of signal processes features for further improvements in the ensemble prediction.
 1. Additional in-sample validation steps to stop deep learning models from over and underfitting. 
