@@ -32,6 +32,9 @@ from atspy import AutomatedModel
 1. A range of accessibility and tracking functions to improve the usability. 
 1. Code annotations for other developers to follow the work being done. 
 
+### Documentation by Example
+
+----------
 
 #### Pandas DataFrame
 ```python
