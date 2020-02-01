@@ -1,4 +1,4 @@
-# Automated Time Series (AtsPy)
+# Automated Time Series in Python (AtsPy)
 
 #### Install
 ```
