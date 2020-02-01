@@ -24,7 +24,7 @@ from atspy import AutomatedModel
 1. So far I have only tested monthly data, and only one particular dataseries. 
 1. More work ahead; suggestions and criticisms appreciated, use issues tab.
 
-#### Future Work
+#### Future Work on AtsPy.
 
 1. The creation of signal processes features for further improvements in the ensemble prediction.
 1. Additional in-sample validation steps to stop deep learning models from over and underfitting. 
@@ -33,7 +33,7 @@ from atspy import AutomatedModel
 1. Code annotations for other developers to follow the work being done. 
 
 
-#### First Step Load Pandas DataFrame
+#### Load Singular Data in Pandas DataFrame.
 ```python
 import pandas as pd
 df = pd.read_csv("https://raw.githubusercontent.com/firmai/random-assets-two/master/ts/monthly-beer-australia.csv")
@@ -41,7 +41,7 @@ df.Month = pd.to_datetime(df.Month)
 df = df.set_index("Month")
 ```
 
-#### Second Decide on Models and Run.
+#### Decide on Models to Test and Run.
 ```python
 from atspy import AutomatedModel
 model_list = ["HWAMS","HWAAS","ARIMA","Gluonts","PYAF","Prophet","NBEATS"]
