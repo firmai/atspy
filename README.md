@@ -1,5 +1,7 @@
 # Automated Time Series in Python (AtsPy)
 
+Automate the development of sophisticated time series models to forecast the future values of a data series based on its historical patterns. Solve problems like sales forecasting, production estimation, product demand, staff optimisation, inventory management and more. More than ten state of the art models are developed to give the best possible prediction performance. 
+
 #### Install
 ```
 pip install atspy
