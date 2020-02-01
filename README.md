@@ -6,13 +6,13 @@ pip install atspy
 ```
 
 #### Load
-```
+```python
 from atspy import AutomatedModel
 ```
 
 #### Why AtsPy?
 
-1. Implements all your favourite automated time series models in a unified manner by simply running ```AutomatedModel(df, model_list, "infer_from_data", 20)  
+1. Implements all your favourite automated time series models in a unified manner by simply running ```AutomatedModel(df, model_list, "infer_from_data", 20)```
 1. Automatically identifies the seasonalities in your data using Singular Spectrum Analysis and peak analysis with ```"infer_from_data"```.
 1. Identifies and makes accessible the best model for your time series. 
 1. Combines the predictions of all these models in a simple (average) or complex (GBM) ensemble for improved performance.
