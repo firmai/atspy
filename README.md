@@ -12,19 +12,19 @@ from atspy import AutomatedModel
 
 #### Why AtsPy?
 
-1. Implements all your favourite automated time series models in a unified manner by simply running ```AutomatedModel(df)```
+1. Implements all your favourite automated time series models in a unified manner by simply running ```AutomatedModel(df)```.
 1. Automatically identifies the seasonalities in your data using Singular Spectrum Analysis and peak analysis with ```"infer_from_data"```.
 1. Identifies and makes accessible the best model for your time series. 
 1. Combines the predictions of all these models in a simple (average) or complex (GBM) ensemble for improved performance.
 
-#### AtsPy Progress. 
+#### AtsPy Progress 
 
 1. Univariate forecasting only (single column). 
 1. Holt, ETS, ARIMA, Prophet, Gluonts, N-BEATS, and PYAF.
 1. So far I have only tested monthly data, and only one particular dataseries. 
 1. More work ahead; suggestions and criticisms appreciated, use issues tab.
 
-#### Future AtsPy Development.
+#### AtsPy Future Development
 
 1. The creation of signal processes features for further improvements in the ensemble prediction.
 1. Additional in-sample validation steps to stop deep learning models from over and underfitting. 
@@ -33,7 +33,7 @@ from atspy import AutomatedModel
 1. Code annotations for other developers to follow the work being done. 
 
 
-#### Load Singular Data in Pandas DataFrame.
+#### Pandas DataFrame
 ```python
 import pandas as pd
 df = pd.read_csv("https://raw.githubusercontent.com/firmai/random-assets-two/master/ts/monthly-beer-australia.csv")
@@ -41,7 +41,7 @@ df.Month = pd.to_datetime(df.Month)
 df = df.set_index("Month")
 ```
 
-#### Decide on Models to Test and Run.
+#### AtsPy AutomatedModel
 ```python
 from atspy import AutomatedModel
 model_list = ["HWAMS","HWAAS","ARIMA","Gluonts","PYAF","Prophet","NBEATS"]
