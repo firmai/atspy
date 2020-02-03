@@ -33,6 +33,7 @@ from atspy import AutomatedModel
 1. The implementation of more automation models to further improve the ensemble prediction. 
 1. A range of accessibility and tracking functions to improve the usability. 
 1. Code annotations for other developers to follow the work being done. 
+1. Remove some seasonality assumptions. 
 
 ### Documentation by Example
 
