@@ -130,7 +130,7 @@ model_list = ["HWAMS","HWAAS","TBAT"]
 am = AutomatedModel(df = df , model_list=model_list,forecast_len=20 )
 ```
 
-Other models to try, **add as many as you like**; note ```ARIMA``` is slow: ```["ARIMA","Gluonts","PYAF","Prophet","NBEATS", "TATS", "TBATS1", "TBATP1", "TBATS2"]```
+Other models to try, **add as many as you like**; note ```ARIMA``` is slow: ```["ARIMA","Gluonts","Prophet","NBEATS", "TATS", "TBATS1", "TBATP1", "TBATS2"]```
 
 
 
