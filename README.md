@@ -55,6 +55,8 @@ df.Month = pd.to_datetime(df.Month)
 df = df.set_index("Month")
 ```
 
+#### AtsPy AutomatedModel
+
 1. ```AutomatedModel``` - Returns a class instance.
 1. ```forecast_insample``` - Returns an in sample forcasted dataframe and performance.  
 1. ```forecast_outsample``` - Returns an out of sample forcasted dataframe.
@@ -62,7 +64,6 @@ df = df.set_index("Month")
 1. ```models_dict_in``` - Returns a dictionary of the fully trained in sample models.
 1. ```models_dict_out``` - Returns a dictionary of the fully trained out of sample models.
 
-#### AtsPy AutomatedModel
 ```python
 from atspy import AutomatedModel
 model_list = ["HWAMS","HWAAS","TBAT"]
