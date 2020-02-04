@@ -34,7 +34,7 @@ pip install atspy
 
 #### AtsPy Progress 
 
-1. Univariate forecasting only (single column) and only monthly and daily data have been testes for suitability.  
+1. Univariate forecasting only (single column) and only monthly and daily data have been tested for suitability.  
 1. More work ahead; all suggestions and criticisms appreciated, use the issues tab.
 1. **Here** is a **[Goolge Colab](https://colab.research.google.com/drive/1WzwxUlAKg-WiEm_SleAzBIV6rs5VY_3W)** to run the package in the cloud. 
 
@@ -116,7 +116,7 @@ df = df.set_index("Month"); df
 
 
 
-#### AtsPy AutomatedModel
+#### AutomatedModel
 
 1. ```AutomatedModel``` - Returns a class instance.
 1. ```forecast_insample``` - Returns an in-sample forcasted dataframe and performance.  
@@ -236,7 +236,7 @@ forecast_out = am.forecast_outsample(); forecast_out
 </table>
 
 
-#### Ensemble and Second Model Validation Performance
+#### Ensemble and Model Validation Performance
 
 ```python
 all_ensemble_in, all_ensemble_out, all_performance = am.ensemble(forecast_in, forecast_out)
