@@ -7,11 +7,6 @@ Easily develop state of the art time series models to forecast the future values
 pip install atspy
 ```
 
-#### Load
-```python
-from atspy import AutomatedModel
-```
-
 #### Automated Models
 
 1. ```ARIMA``` - Automated ARIMA Modelling
@@ -49,6 +44,10 @@ from atspy import AutomatedModel
 ### Documentation by Example
 
 ----------
+#### Load
+```python
+from atspy import AutomatedModel
+```
 
 #### Pandas DataFrame
 ```python
