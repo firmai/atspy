@@ -1,6 +1,6 @@
 # Automated Time Series Models in Python (AtsPy)
 
-Easily develop sophisticated state of the art time series models to forecast the future values of a data series based on its historical patterns. More than ten advanced time series prediction models are developed to give the best possible prediction performance. This package gives you the ability to identify which model fits your data the best. You can solve problems like sales forecasting, production estimation, product demand, staff optimisation, inventory management and more. 
+Easily develop state of the art time series models to forecast the future values of a data series. Simply load your data and select which models you want to test.  
 
 #### Install
 ```
@@ -14,8 +14,8 @@ from atspy import AutomatedModel
 
 #### Automated Models
 
-1. ARIMA - Automated ARIMA Modelling
-1. Prophet - Modeling Multiple Seasonality With Linear or Non-linear Growth
+1. ```ARIMA``` - Automated ARIMA Modelling
+1. ```Prophet``` - Modeling Multiple Seasonality With Linear or Non-linear Growth
 1. HWAAS - Exponential Smoothing With Additive Trend and Additive Seasonality
 1. HWAMS - Exponential Smoothing with Additive Trend and Multiplicative Seasonality
 1. PYAF - Feature Generating Model (slow and underforms)
