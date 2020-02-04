@@ -1,6 +1,6 @@
 # Automated Time Series Models in Python (AtsPy)
 
-Easily develop state of the art time series models to forecast the future values of a data series. Simply load your data and select which models you want to test. This is the largest repository of automated structural and machine learning time series models. 
+Easily develop state of the art time series models to forecast the future values of a data series. Simply load your data and select which models you want to test. This is the largest repository of automated structural and machine learning time series models. Please get in contact if you want to contribute a model.  
 
 #### Install
 ```
@@ -25,13 +25,12 @@ pip install atspy
 #### Why AtsPy?
 
 1. Implements all your favourite automated time series models in a unified manner by simply running ```AutomatedModel(df)```.
-1. Reduce structural model errors by 30-50% by using LightGBM with TSFresh infused features.  
+1. Reduce structural model errors with 30-50% by using LightGBM with TSFresh infused features.  
 1. Automatically identify the seasonalities in your data using singular spectrum analysis, periodograms, and peak analysis.
-1. Identifies and makes accessible the best model for your time series. 
+1. Identifies and makes accessible the best model for your time series using in sample validation methods.  
 1. Combines the predictions of all these models in a simple (average) and complex (GBM) ensembles for improved performance.
 1. Where appropriate models have been developed to use GPU resources to speed up the automation process.
-1. Easily access all the models by using ```am.models_dict_in``` for insample and ```am.models_dict_out``` for out of sample.
-1. 
+1. Easily access all the models by using ```am.models_dict_in``` for in sample and ```am.models_dict_out``` for out of sample.
 
 #### AtsPy Progress 
 
@@ -43,7 +42,7 @@ pip install atspy
 ### Documentation by Example
 
 ----------
-#### Load
+#### Load Package
 ```python
 from atspy import AutomatedModel
 ```
