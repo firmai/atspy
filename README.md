@@ -136,6 +136,7 @@ am = AutomatedModel(df = df , model_list=model_list,forecast_len=20 )
 
 Other models to try, add as many as you like, note ```ARIMA``` is slow: ```"ARIMA","Gluonts","PYAF","Prophet","NBEATS", "TATS", "TBATS1", "TBATP1", "TBATS2"```
 
+##### In Sample Performance
 ```python
 forecast_in, performance = am.forecast_insample()
 ```
@@ -178,6 +179,8 @@ performance
     </tr>
   </tbody>
 </table>
+
+##### Out of Sample Forecast
 
 ```python
 forecast_out = am.forecast_outsample(); forecast_out
@@ -232,6 +235,7 @@ forecast_out = am.forecast_outsample(); forecast_out
   </tbody>
 </table>
 
+##### Ensemble and Second Model Validation Performance
 
 ```python
 all_ensemble_in, all_ensemble_out, all_performance = am.ensemble(forecast_in, forecast_out)
@@ -321,12 +325,19 @@ all_performance
 </table>
 
 
+##### Best Performing Insample
 
-### Example Output
-![](https://github.com/firmai/atspy/blob/master/atspy_files/Screen%20Shot%202020-01-31%20at%207.51.07%20PM.png)
+```python
+all_ensemble_in[["Target","ensemble_lgb__X__HWAMS","HWAMS","HWAAS"]].plot()
+```
+![png](atspy_files/insample.png)
 
+##### Future Prediction
 
-
+```python
+all_ensemble_out[["ensemble_lgb__X__HWAMS","HWAMS","HWAAS"]].plot()
+```
+![png](atspy_files/outsample.png)
 
 
 #### AtsPy Future Development
