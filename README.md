@@ -36,6 +36,7 @@ pip install atspy
 
 1. Univariate forecasting only (single column) and only monthly and daily data have been testes for suitability.  
 1. More work ahead; all suggestions and criticisms appreciated, use the issues tab.
+1. Here is a [Goolge Colab](https://colab.research.google.com/drive/1WzwxUlAKg-WiEm_SleAzBIV6rs5VY_3W) to run the package in the cloud. 
 
 
 ### Documentation by Example
@@ -132,7 +133,7 @@ am = AutomatedModel(df = df , model_list=model_list,forecast_len=20 )
 
 Other models to try, **add as many as you like**; note ```ARIMA``` is slow: ```["ARIMA","Gluonts","PYAF","Prophet","NBEATS", "TATS", "TBATS1", "TBATP1", "TBATS2"]```
 
------------------------------
+
 
 #### In-Sample Performance
 ```python
@@ -339,6 +340,9 @@ all_ensemble_in[["Target","ensemble_lgb__X__HWAMS","HWAMS","HWAAS"]].plot()
 all_ensemble_out[["ensemble_lgb__X__HWAMS","HWAMS","HWAAS"]].plot()
 ```
 ![png](atspy_files/outsample.png)
+
+
+Follow [this link](https://colab.research.google.com/drive/1WzwxUlAKg-WiEm_SleAzBIV6rs5VY_3W) if you want to run the package in the cloud. 
 
 
 #### AtsPy Future Development
