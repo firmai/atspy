@@ -36,7 +36,7 @@ pip install atspy
 
 1. Univariate forecasting only (single column) and only monthly and daily data have been testes for suitability.  
 1. More work ahead; all suggestions and criticisms appreciated, use the issues tab.
-1. Here is a [Goolge Colab](https://colab.research.google.com/drive/1WzwxUlAKg-WiEm_SleAzBIV6rs5VY_3W) to run the package in the cloud. 
+1. **Here** is a **[Goolge Colab](https://colab.research.google.com/drive/1WzwxUlAKg-WiEm_SleAzBIV6rs5VY_3W)** to run the package in the cloud. 
 
 
 ### Documentation by Example
