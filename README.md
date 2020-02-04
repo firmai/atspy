@@ -56,6 +56,92 @@ import pandas as pd
 df = pd.read_csv("https://raw.githubusercontent.com/firmai/random-assets-two/master/ts/monthly-beer-australia.csv")
 df.Month = pd.to_datetime(df.Month)
 df = df.set_index("Month")
+df 
+```
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Target</th>
+      <th>HWAMS</th>
+      <th>HWAAS</th>
+      <th>TBAT</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1985-10-01</th>
+      <td>181.6</td>
+      <td>161.962148</td>
+      <td>162.391653</td>
+      <td>148.410071</td>
+    </tr>
+    <tr>
+      <th>1985-11-01</th>
+      <td>182.0</td>
+      <td>174.688055</td>
+      <td>173.191756</td>
+      <td>147.999237</td>
+    </tr>
+    <tr>
+      <th>1985-12-01</th>
+      <td>190.0</td>
+      <td>189.728744</td>
+      <td>187.649575</td>
+      <td>147.589541</td>
+    </tr>
+    <tr>
+      <th>1986-01-01</th>
+      <td>161.2</td>
+      <td>155.077205</td>
+      <td>154.817215</td>
+      <td>147.180980</td>
+    </tr>
+    <tr>
+      <th>1986-02-01</th>
+      <td>155.5</td>
+      <td>148.054292</td>
+      <td>147.477692</td>
+      <td>146.773549</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+#### AtsPy AutomatedModel
+
+1. ```AutomatedModel``` - Returns a class instance.
+1. ```forecast_insample``` - Returns an in sample forcasted dataframe and performance.  
+1. ```forecast_outsample``` - Returns an out of sample forcasted dataframe.
+1. ```ensemble``` - Returns the results of three different forms of ensembles.
+1. ```models_dict_in``` - Returns a dictionary of the fully trained in sample models.
+1. ```models_dict_out``` - Returns a dictionary of the fully trained out of sample models.
+
+```python
+from atspy import AutomatedModel
+model_list = ["HWAMS","HWAAS","TBAT"]
+am = AutomatedModel(df = df , model_list=model_list,forecast_len=20 )
+```
+
+Other models to try, add as many as you like, note ```ARIMA``` is slow: ```"ARIMA","Gluonts","PYAF","Prophet","NBEATS", "TATS", "TBATS1", "TBATP1", "TBATS2"```
+
+```python
+forecast_in, performance = am.forecast_insample()
+```
+
+```python
+performance
 ```
 
 <table class="dataframe">
@@ -93,30 +179,149 @@ df = df.set_index("Month")
   </tbody>
 </table>
 
+```python
+forecast_out = am.forecast_outsample(); forecast_out
+```
 
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>HWAMS</th>
+      <th>HWAAS</th>
+      <th>TBAT</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1995-09-01</th>
+      <td>137.518755</td>
+      <td>137.133938</td>
+      <td>142.906275</td>
+    </tr>
+    <tr>
+      <th>1995-10-01</th>
+      <td>164.136220</td>
+      <td>165.079612</td>
+      <td>142.865575</td>
+    </tr>
+    <tr>
+      <th>1995-11-01</th>
+      <td>178.671684</td>
+      <td>180.009560</td>
+      <td>142.827110</td>
+    </tr>
+    <tr>
+      <th>1995-12-01</th>
+      <td>184.175954</td>
+      <td>185.715043</td>
+      <td>142.790757</td>
+    </tr>
+    <tr>
+      <th>1996-01-01</th>
+      <td>147.166448</td>
+      <td>147.440026</td>
+      <td>142.756399</td>
+    </tr>
+  </tbody>
+</table>
 
-
-
-#### AtsPy AutomatedModel
-
-1. ```AutomatedModel``` - Returns a class instance.
-1. ```forecast_insample``` - Returns an in sample forcasted dataframe and performance.  
-1. ```forecast_outsample``` - Returns an out of sample forcasted dataframe.
-1. ```ensemble``` - Returns the results of three different forms of ensembles.
-1. ```models_dict_in``` - Returns a dictionary of the fully trained in sample models.
-1. ```models_dict_out``` - Returns a dictionary of the fully trained out of sample models.
 
 ```python
-from atspy import AutomatedModel
-model_list = ["HWAMS","HWAAS","TBAT"]
-am = AutomatedModel(df = df , model_list=model_list,forecast_len=20 )
+all_ensemble_in, all_ensemble_out, all_performance = am.ensemble(forecast_in, forecast_out)
 ```
 
-Other models to try, add as many as you like, note ```ARIMA``` is slow: ```"ARIMA","Gluonts","PYAF","Prophet","NBEATS", "TATS", "TBATS1", "TBATP1", "TBATS2"```
+```python
+all_performance
+```
 
-```
-forecast_in, performance = am.forecast_insample()
-```
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rmse</th>
+      <th>mse</th>
+      <th>mean</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ensemble_lgb__X__HWAMS</th>
+      <td>9.697588</td>
+      <td>94.043213</td>
+      <td>146.719412</td>
+    </tr>
+    <tr>
+      <th>ensemble_lgb__X__HWAMS__X__HWAMS_HWAAS__X__ensemble_ts__X__HWAAS</th>
+      <td>9.875212</td>
+      <td>97.519817</td>
+      <td>145.250837</td>
+    </tr>
+    <tr>
+      <th>ensemble_lgb__X__HWAMS__X__HWAMS_HWAAS</th>
+      <td>11.127326</td>
+      <td>123.817378</td>
+      <td>142.994374</td>
+    </tr>
+    <tr>
+      <th>ensemble_lgb</th>
+      <td>12.748526</td>
+      <td>162.524907</td>
+      <td>156.487208</td>
+    </tr>
+    <tr>
+      <th>ensemble_lgb__X__HWAMS__X__HWAMS_HWAAS__X__ensemble_ts__X__HWAAS__X__HWAMS_HWAAS_TBAT__X__TBAT</th>
+      <td>14.589155</td>
+      <td>212.843442</td>
+      <td>138.615567</td>
+    </tr>
+    <tr>
+      <th>HWAMS</th>
+      <td>15.567905</td>
+      <td>242.359663</td>
+      <td>136.951615</td>
+    </tr>
+    <tr>
+      <th>HWAMS_HWAAS</th>
+      <td>16.651370</td>
+      <td>277.268110</td>
+      <td>135.544299</td>
+    </tr>
+    <tr>
+      <th>ensemble_ts</th>
+      <td>17.255107</td>
+      <td>297.738716</td>
+      <td>163.134079</td>
+    </tr>
+    <tr>
+      <th>HWAAS</th>
+      <td>17.804066</td>
+      <td>316.984751</td>
+      <td>134.136983</td>
+    </tr>
+    <tr>
+      <th>HWAMS_HWAAS_TBAT</th>
+      <td>23.358758</td>
+      <td>545.631579</td>
+      <td>128.785846</td>
+    </tr>
+    <tr>
+      <th>TBAT</th>
+      <td>39.003864</td>
+      <td>1521.301380</td>
+      <td>115.268940</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
 ### Example Output
 ![](https://github.com/firmai/atspy/blob/master/atspy_files/Screen%20Shot%202020-01-31%20at%207.51.07%20PM.png)
 
