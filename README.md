@@ -1,6 +1,6 @@
 # Automated Time Series Models in Python (AtsPy)
 
-Easily develop state of the art time series models to forecast the future values of a data series. Simply load your data and select which models you want to test.  
+Easily develop state of the art time series models to forecast the future values of a data series. Simply load your data and select which models you want to test. This is the largest repository of automated structural and machine learning time series models. 
 
 #### Install
 ```
@@ -39,7 +39,8 @@ pip install atspy
 
 1. Additional in-sample validation steps to stop deep learning models from over and underfitting. 
 1. Code annotations for other developers to follow and improve on the work being done. 
-1. Force seasonality stability between in and out of sample training models.  
+1. Force seasonality stability between in and out of sample training models.
+1. Make AtsPy less dependency heavy, currently it draws on tensorflow, pytorch and mxnet. 
 
 ### Documentation by Example
 
