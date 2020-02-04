@@ -57,21 +57,8 @@ df = pd.read_csv("https://raw.githubusercontent.com/firmai/random-assets-two/mas
 df.Month = pd.to_datetime(df.Month)
 df = df.set_index("Month")
 ```
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
+<table class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -105,7 +92,6 @@ df = df.set_index("Month")
     </tr>
   </tbody>
 </table>
-</div>
 
 
 
