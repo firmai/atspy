@@ -1,4 +1,3 @@
-
 ## NBEATS UTILS
 # plot utils.
 def plot_scatter(*args, **kwargs):
@@ -32,8 +31,8 @@ def train_100_grad_steps(data, device, net, optimiser):
         loss = F.mse_loss(forecast, torch.tensor(y_train_batch, dtype=torch.float).to(device))
         loss.backward()
         optimiser.step()
-        if global_step % 30 == 0:
-            print(f'grad_step = {str(global_step).zfill(6)}, tr_loss = {loss.item():.6f}, te_loss = ')
+        # if global_step % 30 == 0:
+        #     print(f'grad_step = {str(global_step).zfill(6)}, tr_loss = {loss.item():.6f}, te_loss = ')
         if global_step > 0 and global_step % 100 == 0:
             with torch.no_grad():
                 save(net, optimiser, global_step)
@@ -46,7 +45,7 @@ def load(model, optimiser):
         model.load_state_dict(checkpoint['model_state_dict'])
         optimiser.load_state_dict(checkpoint['optimizer_state_dict'])
         grad_step = checkpoint['grad_step']
-        print(f'Restored checkpoint from {CHECKPOINT_NAME}.')
+        #print(f'Restored checkpoint from {CHECKPOINT_NAME}.')
         return grad_step
     return 0
 
@@ -73,4 +72,3 @@ def eval_test(backcast_length, forecast_length, net, norm_constant, test_losses,
         plot_scatter(range(backcast_length, backcast_length + forecast_length), yy, color='g')
         plot_scatter(range(backcast_length, backcast_length + forecast_length), ff, color='r')
     plt.show()
-    

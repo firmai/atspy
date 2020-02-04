@@ -3,16 +3,15 @@ import os
 import sys
 
 setup(name='atspy',
-      version='1.3',
+      version='0.0.9',
       description='Automated Time Series in Python',
-      url='https://github.com/firmai/automated-time-series',
+      url='https://github.com/firmai/atspy',
       author='snowde',
       author_email='d.snow@firmai.org',
       license='MIT',
       packages=['atspy','atspy.TS'],
       install_requires=[
           'pandas',
-          'numpy==1.17.4',
           'scipy',
           'numba',
           'datetime',
@@ -27,7 +26,11 @@ setup(name='atspy',
           'mxnet==1.4.1',
           'gluonts',
           'nbeats-pytorch',
-          'python-dateutil==2.8.0'
+          'seasonal',
+          'tbats',
+          'tsfresh',
+          'python-dateutil==2.8.0',
+          'numpy==1.17.4',
 
       ],
       zip_safe=False)

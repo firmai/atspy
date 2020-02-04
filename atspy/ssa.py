@@ -22,13 +22,13 @@ class mySSA(object):
         self.ts_N = self.ts.shape[0]
         self.freq = self.ts.index.inferred_freq
     
-    @staticmethod
-    def _printer(name, *args):
-        '''Helper function to print messages neatly'''
-        print('-'*40)
-        print(name+':')
-        for msg in args:
-            print(msg)  
+    # @staticmethod
+    # def _printer(name, *args):
+    #     '''Helper function to print messages neatly'''
+    #     print('-'*40)
+    #     print(name+':')
+    #     for msg in args:
+    #         print(msg)  
     
     @staticmethod
     def _dot(x,y):
@@ -99,12 +99,12 @@ class mySSA(object):
         self.missing_dimensions = self.X_missing.shape
         self.no_missing = self.missing_dimensions[1]==0
             
-        if verbose:
-            msg1 = 'Embedding dimension\t:  {}\nTrajectory dimensions\t: {}'
-            msg2 = 'Complete dimension\t: {}\nMissing dimension     \t: {}'
-            msg1 = msg1.format(self.embedding_dimension, self.trajectory_dimentions)
-            msg2 = msg2.format(self.complete_dimensions, self.missing_dimensions)
-            self._printer('EMBEDDING SUMMARY', msg1, msg2)
+        # if verbose:
+        #     msg1 = 'Embedding dimension\t:  {}\nTrajectory dimensions\t: {}'
+        #     msg2 = 'Complete dimension\t: {}\nMissing dimension     \t: {}'
+        #     msg1 = msg1.format(self.embedding_dimension, self.trajectory_dimentions)
+        #     msg2 = msg2.format(self.complete_dimensions, self.missing_dimensions)
+        #     self._printer('EMBEDDING SUMMARY', msg1, msg2)
         
         if return_df:
             return self.X_df
@@ -129,11 +129,11 @@ class mySSA(object):
         self.r_characteristic = round((self.s[:self.r]**2).sum()/(self.s**2).sum(),4)
         self.orthonormal_base = {i:self.U[:,i] for i in range(self.r)}
         
-        if verbose:
-            msg1 = 'Rank of trajectory\t\t: {}\nDimension of projection space\t: {}'
-            msg1 = msg1.format(self.d, self.r)
-            msg2 = 'Characteristic of projection\t: {}'.format(self.r_characteristic)
-            self._printer('DECOMPOSITION SUMMARY', msg1, msg2)
+        # if verbose:
+        #     msg1 = 'Rank of trajectory\t\t: {}\nDimension of projection space\t: {}'
+        #     msg1 = msg1.format(self.d, self.r)
+        #     msg2 = 'Characteristic of projection\t: {}'.format(self.r_characteristic)
+        #     self._printer('DECOMPOSITION SUMMARY', msg1, msg2)
     
     def view_s_contributions(self, adjust_scale=False, cumulative=False, return_df=False):
         '''View the contribution to variance of each singular value and its corresponding signal'''
@@ -227,3 +227,79 @@ class mySSA(object):
         if return_df:
             return forecast_df
             
+
+## NBEATS UTILS
+# plot utils.
+def plot_scatter(*args, **kwargs):
+    plt.plot(*args, **kwargs)
+    plt.scatter(*args, **kwargs)
+
+
+# simple batcher.
+def data_generator(x_full, y_full, bs):
+    def split(arr, size):
+        arrays = []
+        while len(arr) > size:
+            slice_ = arr[:size]
+            arrays.append(slice_)
+            arr = arr[size:]
+        arrays.append(arr)
+        return arrays
+
+    while True:
+        for rr in split((x_full, y_full), bs):
+            yield rr
+
+# trainer
+def train_100_grad_steps(data, device, net, optimiser):
+    global_step = load(net, optimiser)
+    for x_train_batch, y_train_batch in data:
+        global_step += 1
+        optimiser.zero_grad()
+        net.train()
+        _, forecast = net(torch.tensor(x_train_batch, dtype=torch.float).to(device))
+        loss = F.mse_loss(forecast, torch.tensor(y_train_batch, dtype=torch.float).to(device))
+        loss.backward()
+        optimiser.step()
+        # if global_step % 30 == 0:
+        #     print(f'grad_step = {str(global_step).zfill(6)}, tr_loss = {loss.item():.6f}, te_loss = ')
+        if global_step > 0 and global_step % 100 == 0:
+            with torch.no_grad():
+                save(net, optimiser, global_step)
+            break
+
+# loader/saver for checkpoints.
+def load(model, optimiser):
+    if os.path.exists(CHECKPOINT_NAME):
+        checkpoint = torch.load(CHECKPOINT_NAME)
+        model.load_state_dict(checkpoint['model_state_dict'])
+        optimiser.load_state_dict(checkpoint['optimizer_state_dict'])
+        grad_step = checkpoint['grad_step']
+        #print(f'Restored checkpoint from {CHECKPOINT_NAME}.')
+        return grad_step
+    return 0
+
+def save(model, optimiser, grad_step):
+    torch.save({
+        'grad_step': grad_step,
+        'model_state_dict': model.state_dict(),
+        'optimizer_state_dict': optimiser.state_dict(),
+    }, CHECKPOINT_NAME)
+
+# evaluate model on test data and produce some plots.
+def eval_test(backcast_length, forecast_length, net, norm_constant, test_losses, x_test, y_test):
+    net.eval()
+    _, forecast = net(torch.tensor(x_test, dtype=torch.float))
+    test_losses.append(F.mse_loss(forecast, torch.tensor(y_test, dtype=torch.float)).item())
+    p = forecast.detach().numpy()
+    subplots = [221, 222, 223, 224]
+    plt.figure(1)
+    for plot_id, i in enumerate(np.random.choice(range(len(x_test)), size=4, replace=False)):
+        ff, xx, yy = p[i] * norm_constant, x_test[i] * norm_constant, y_test[i] * norm_constant
+        plt.subplot(subplots[plot_id])
+        plt.grid()
+        plot_scatter(range(0, backcast_length), xx, color='b')
+        plot_scatter(range(backcast_length, backcast_length + forecast_length), yy, color='g')
+        plot_scatter(range(backcast_length, backcast_length + forecast_length), ff, color='r')
+    plt.show()
+    
