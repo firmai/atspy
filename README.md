@@ -55,11 +55,12 @@ df.Month = pd.to_datetime(df.Month)
 df = df.set_index("Month")
 ```
 
-1. ```TATS``` - Seasonal and Trend no Box Cox
-1. ```TBAT``` - Trend and Box Cox
-1. ```TBATS1``` - Trend, Seasonal (one), and Box Cox
-1. ```TBATP1``` - TBATS1 but Seasonal Inference is Hardcoded by Periodicity
-1. ```TBATS2``` - TBATS1 With Two Seasonal Periods
+1. ```AutomatedModel``` - Returns a class instance.
+1. ```forecast_insample``` - Returns an in sample forcasted dataframe and performance.  
+1. ```forecast_outsample``` - Returns an out of sample forcasted dataframe.
+1. ```ensemble``` - Returns the results of three different forms of ensembles.
+1. ```models_dict_in``` - Returns a dictionary of the fully trained in sample models.
+1. ```models_dict_out``` - Returns a dictionary of the fully trained out of sample models.
 
 #### AtsPy AutomatedModel
 ```python
