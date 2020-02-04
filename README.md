@@ -48,12 +48,89 @@ from atspy import AutomatedModel
 ```
 
 #### Pandas DataFrame
+
+The data requires strict preprocessing, no periods can be skipped and there can not be an empty values. 
+
 ```python
 import pandas as pd
 df = pd.read_csv("https://raw.githubusercontent.com/firmai/random-assets-two/master/ts/monthly-beer-australia.csv")
 df.Month = pd.to_datetime(df.Month)
 df = df.set_index("Month")
 ```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Target</th>
+      <th>HWAMS</th>
+      <th>HWAAS</th>
+      <th>TBAT</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1985-10-01</th>
+      <td>181.6</td>
+      <td>161.962148</td>
+      <td>162.391653</td>
+      <td>148.410071</td>
+    </tr>
+    <tr>
+      <th>1985-11-01</th>
+      <td>182.0</td>
+      <td>174.688055</td>
+      <td>173.191756</td>
+      <td>147.999237</td>
+    </tr>
+    <tr>
+      <th>1985-12-01</th>
+      <td>190.0</td>
+      <td>189.728744</td>
+      <td>187.649575</td>
+      <td>147.589541</td>
+    </tr>
+    <tr>
+      <th>1986-01-01</th>
+      <td>161.2</td>
+      <td>155.077205</td>
+      <td>154.817215</td>
+      <td>147.180980</td>
+    </tr>
+    <tr>
+      <th>1986-02-01</th>
+      <td>155.5</td>
+      <td>148.054292</td>
+      <td>147.477692</td>
+      <td>146.773549</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
 
 #### AtsPy AutomatedModel
 
