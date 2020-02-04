@@ -1,6 +1,6 @@
 # Automated Time Series Models in Python (AtsPy)
 
-Easily develop state of the art time series models to forecast univariate data series. Simply load your data and select which models you want to test. This is the largest repository of automated structural and machine learning time series models. Please get in contact if you want to contribute a model.  
+Easily develop state of the art time series models to forecast univariate data series. Simply load your data and select which models you want to test. This is the largest repository of automated structural and machine learning time series models. Please get in contact if you want to contribute a model. This is a fledgling project, all advice appreciated. 
 
 #### Install
 ```
@@ -130,7 +130,7 @@ model_list = ["HWAMS","HWAAS","TBAT"]
 am = AutomatedModel(df = df , model_list=model_list,forecast_len=20 )
 ```
 
-Other models to try, add as many as you like, note ```ARIMA``` is slow: ```"ARIMA","Gluonts","PYAF","Prophet","NBEATS", "TATS", "TBATS1", "TBATP1", "TBATS2"```
+Other models to try, **add as many as you like**; note ```ARIMA``` is slow: ```["ARIMA","Gluonts","PYAF","Prophet","NBEATS", "TATS", "TBATS1", "TBATP1", "TBATS2"]```
 
 
 #### In-Sample Performance
@@ -178,7 +178,7 @@ performance
 </table>
 
 
-#### Out of Sample Forecast
+#### Out-of-Sample Forecast
 
 ```python
 forecast_out = am.forecast_outsample(); forecast_out
@@ -332,7 +332,7 @@ all_ensemble_in[["Target","ensemble_lgb__X__HWAMS","HWAMS","HWAAS"]].plot()
 ![png](atspy_files/insample.png)
 
 
-#### Future Prediction
+#### Future Predictions All Models
 
 ```python
 all_ensemble_out[["ensemble_lgb__X__HWAMS","HWAMS","HWAAS"]].plot()
