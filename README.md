@@ -342,6 +342,38 @@ all_ensemble_out[["ensemble_lgb__X__HWAMS","HWAMS","HWAAS"]].plot()
 ![png](atspy_files/outsample.png)
 
 
+
+#### And Finally Grab the Models
+
+```
+am.models_dict_in
+```
+
+
+
+
+    {'HWAAS': <statsmodels.tsa.holtwinters.HoltWintersResultsWrapper at 0x7f42f7822d30>,
+     'HWAMS': <statsmodels.tsa.holtwinters.HoltWintersResultsWrapper at 0x7f42f77fff60>,
+     'TBAT': <tbats.tbats.Model.Model at 0x7f42d3aab048>}
+
+
+
+
+```
+am.models_dict_out
+```
+
+
+
+
+    {'HWAAS': <statsmodels.tsa.holtwinters.HoltWintersResultsWrapper at 0x7f9c01309278>,
+     'HWAMS': <statsmodels.tsa.holtwinters.HoltWintersResultsWrapper at 0x7f9c01309cf8>,
+     'TBAT': <tbats.tbats.Model.Model at 0x7f9c08f18ba8>}
+
+
+
+
+
 Follow [this link](https://colab.research.google.com/drive/1WzwxUlAKg-WiEm_SleAzBIV6rs5VY_3W) if you want to run the package in the cloud. 
 
 
