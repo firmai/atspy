@@ -12,6 +12,21 @@ pip install atspy
 from atspy import AutomatedModel
 ```
 
+#### Automated Models
+
+1. ARIMA - Automated ARIMA Modelling
+1. Prophet - Modeling Multiple Seasonality With Linear or Non-linear Growth
+1. HWAAS - Exponential Smoothing With Additive Trend and Additive Seasonality
+1. HWAMS - Exponential Smoothing with Additive Trend and Multiplicative Seasonality
+1. PYAF - Feature Generating Model (slow and underforms)
+1. NBEATS -  Neural basis expansion analysis (now fixed at 20 Epochs)
+1. Gluonts - RNN-based Model (now fixed at 20 Epochs)
+1. TATS - Seasonal and Trend no Box Cox
+1. TBAT - Trend and Box Cox
+1. TBATS1 - Trend, Seasonal (one), and Box Cox
+1. TBATP1 - TBATS1 but Seasonal Inference is Hardcoded by Periodicity
+1. TBATS2 - TBATS1 With Two Seasonal Periods
+
 #### Why AtsPy?
 
 1. Implements all your favourite automated time series models in a unified manner by simply running ```AutomatedModel(df)```.
