@@ -13,7 +13,6 @@ pip install atspy
 1. ```Prophet``` - Modeling Multiple Seasonality With Linear or Non-linear Growth
 1. ```HWAAS``` - Exponential Smoothing With Additive Trend and Additive Seasonality
 1. ```HWAMS``` - Exponential Smoothing with Additive Trend and Multiplicative Seasonality
-1. ```PYAF``` - Feature Generating Model (slow and underforms)
 1. ```NBEATS``` -  Neural basis expansion analysis (now fixed at 20 Epochs)
 1. ```Gluonts``` - RNN-based Model (now fixed at 20 Epochs)
 1. ```TATS``` - Seasonal and Trend no Box Cox
