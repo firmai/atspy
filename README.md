@@ -1,6 +1,6 @@
 # Automated Time Series Models in Python (AtsPy)
 
-Easily develop state of the art time series models to forecast the future values of a data series. Simply load your data and select which models you want to test. This is the largest repository of automated structural and machine learning time series models. Please get in contact if you want to contribute a model.  
+Easily develop state of the art time series models to forecast univariate data series. Simply load your data and select which models you want to test. This is the largest repository of automated structural and machine learning time series models. Please get in contact if you want to contribute a model.  
 
 #### Install
 ```
@@ -25,17 +25,16 @@ pip install atspy
 #### Why AtsPy?
 
 1. Implements all your favourite automated time series models in a unified manner by simply running ```AutomatedModel(df)```.
-1. Reduce structural model errors with 30-50% by using LightGBM with TSFresh infused features.  
+1. Reduce structural model errors with 30%-50% by using LightGBM with TSFresh infused features.  
 1. Automatically identify the seasonalities in your data using singular spectrum analysis, periodograms, and peak analysis.
-1. Identifies and makes accessible the best model for your time series using in sample validation methods.  
+1. Identifies and makes accessible the best model for your time series using in-sample validation methods.  
 1. Combines the predictions of all these models in a simple (average) and complex (GBM) ensembles for improved performance.
 1. Where appropriate models have been developed to use GPU resources to speed up the automation process.
-1. Easily access all the models by using ```am.models_dict_in``` for in sample and ```am.models_dict_out``` for out of sample.
+1. Easily access all the models by using ```am.models_dict_in``` for in-sample and ```am.models_dict_out``` for out-of-sample prediction.
 
 #### AtsPy Progress 
 
-1. Univariate forecasting only (single column) and only for monthly data (daily data will be available soon). 
-1. So far I have only tested monthly data and only one particular dataseries. 
+1. Univariate forecasting only (single column) and only monthly and daily data have been testes for suitability.  
 1. More work ahead; all suggestions and criticisms appreciated, use the issues tab.
 
 
@@ -49,7 +48,7 @@ from atspy import AutomatedModel
 
 #### Pandas DataFrame
 
-The data requires strict preprocessing, no periods can be skipped and there can not be an empty values. 
+The data requires strict preprocessing, no periods can be skipped and there cannot be any empty values. 
 
 ```python
 import pandas as pd
@@ -117,16 +116,14 @@ df
 
 
 
-
-
 #### AtsPy AutomatedModel
 
 1. ```AutomatedModel``` - Returns a class instance.
-1. ```forecast_insample``` - Returns an in sample forcasted dataframe and performance.  
-1. ```forecast_outsample``` - Returns an out of sample forcasted dataframe.
+1. ```forecast_insample``` - Returns an in-sample forcasted dataframe and performance.  
+1. ```forecast_outsample``` - Returns an out-of-sample forcasted dataframe.
 1. ```ensemble``` - Returns the results of three different forms of ensembles.
-1. ```models_dict_in``` - Returns a dictionary of the fully trained in sample models.
-1. ```models_dict_out``` - Returns a dictionary of the fully trained out of sample models.
+1. ```models_dict_in``` - Returns a dictionary of the fully trained in-sample models.
+1. ```models_dict_out``` - Returns a dictionary of the fully trained out-of-sample models.
 
 ```python
 from atspy import AutomatedModel
@@ -136,7 +133,7 @@ am = AutomatedModel(df = df , model_list=model_list,forecast_len=20 )
 
 Other models to try, add as many as you like, note ```ARIMA``` is slow: ```"ARIMA","Gluonts","PYAF","Prophet","NBEATS", "TATS", "TBATS1", "TBATP1", "TBATS2"```
 
-##### In Sample Performance
+##### In-Sample Performance
 ```python
 forecast_in, performance = am.forecast_insample()
 ```
@@ -325,7 +322,7 @@ all_performance
 </table>
 
 
-##### Best Performing Insample
+##### Best Performing In-sample
 
 ```python
 all_ensemble_in[["Target","ensemble_lgb__X__HWAMS","HWAMS","HWAAS"]].plot()
