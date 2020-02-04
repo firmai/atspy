@@ -57,7 +57,6 @@ df = pd.read_csv("https://raw.githubusercontent.com/firmai/random-assets-two/mas
 df.Month = pd.to_datetime(df.Month)
 df = df.set_index("Month")
 ```
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -81,53 +80,33 @@ df = df.set_index("Month")
       <th>HWAAS</th>
       <th>TBAT</th>
     </tr>
-    <tr>
-      <th>Date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>1985-10-01</th>
-      <td>181.6</td>
-      <td>161.962148</td>
-      <td>162.391653</td>
-      <td>148.410071</td>
+      <th>rmse</th>
+      <td>0.000000</td>
+      <td>17.599400</td>
+      <td>18.993827</td>
+      <td>36.538009</td>
     </tr>
     <tr>
-      <th>1985-11-01</th>
-      <td>182.0</td>
-      <td>174.688055</td>
-      <td>173.191756</td>
-      <td>147.999237</td>
+      <th>mse</th>
+      <td>0.000000</td>
+      <td>309.738878</td>
+      <td>360.765452</td>
+      <td>1335.026136</td>
     </tr>
     <tr>
-      <th>1985-12-01</th>
-      <td>190.0</td>
-      <td>189.728744</td>
-      <td>187.649575</td>
-      <td>147.589541</td>
-    </tr>
-    <tr>
-      <th>1986-01-01</th>
-      <td>161.2</td>
-      <td>155.077205</td>
-      <td>154.817215</td>
-      <td>147.180980</td>
-    </tr>
-    <tr>
-      <th>1986-02-01</th>
-      <td>155.5</td>
-      <td>148.054292</td>
-      <td>147.477692</td>
-      <td>146.773549</td>
+      <th>mean</th>
+      <td>155.293277</td>
+      <td>142.399639</td>
+      <td>140.577496</td>
+      <td>126.590412</td>
     </tr>
   </tbody>
 </table>
 </div>
+
 
 
 
