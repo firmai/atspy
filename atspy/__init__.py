@@ -1,6 +1,6 @@
 from .ssa import mySSA
 from .nbeats import plot_scatter, data_generator, train_100_grad_steps, load, save, eval_test
-from .pyaf import cForecastEngine as autof
+#from .pyaf import cForecastEngine as autof
 
 ## Traditional
 import pandas as pd
@@ -52,7 +52,6 @@ from tsfresh.utilities.dataframe_functions import impute, roll_time_series
 from tsfresh import extract_features
 import pandas as pd 
 from tsfresh import select_features
-from tsfresh.utilities.dataframe_functions import impute, roll_time_series
 from tsfresh.utilities.dataframe_functions import impute
 import seaborn as sns
 from sklearn.decomposition import PCA
@@ -265,7 +264,7 @@ def train_test_split(df, train_proportion=0.75):
 ## This would allow you to play around with APIs and that sort of thing. 
 
 
-def prophet_dataframe(df):
+def prophet_dataframe(df): 
   df_pr = df.reset_index()
   df_pr.columns = ['ds','y']
   return df_pr
@@ -284,7 +283,7 @@ def original_dataframe(df, freq):
   prophet_pred = pd.DataFrame({"Date" : df['ds'], "Target" : df["yhat"]})
   prophet_pred = prophet_pred.set_index("Date")
   #prophet_pred.index.freq = pd.tseries.frequencies.to_offset(freq)
-  return prophet_pred["Target"]
+  return prophet_pred["Target"].values
 
 
 def season_list(train):
@@ -350,7 +349,7 @@ def train_models(train, models,forecast_len, full_df=None,seasonality="infer_fro
     # if m=="HOLT":
     #   models_dict["HOLT"] = Holt(train,exponential=True).fit()
     if m=="PYAF":
-      model = autof.cForecastEngine()
+      model = autof()
       model.train(iInputDS = train.reset_index(), iTime = 'Date', iSignal = 'Target', iHorizon = len(train)) # bad coding to have horison here
       models_dict[m] = model.forecast(iInputDS = train.reset_index(), iHorizon = forecast_len)
     if m=="Gluonts":
@@ -359,7 +358,7 @@ def train_models(train, models,forecast_len, full_df=None,seasonality="infer_fro
         freq= "M"
       else:
         freq= freqed
-      estimator = DeepAREstimator(freq=freq, prediction_length=forecast_len, trainer=Trainer(epochs=20,ctx='gpu')) #use_feat_dynamic_real=True
+      estimator = DeepAREstimator(freq=freq, prediction_length=forecast_len, trainer=Trainer(epochs=6,ctx='gpu')) #use_feat_dynamic_real=True
       if GPU:
         models_dict[m] = estimator.train(training_data=gluonts_dataframe(train)) 
       else:
@@ -373,7 +372,7 @@ def train_models(train, models,forecast_len, full_df=None,seasonality="infer_fro
       
       if os.path.isfile(CHECKPOINT_NAME):
           os.remove(CHECKPOINT_NAME)
-      stepped = 25
+      stepped = 35
       batch_size = 10
       if in_sample:
         x_train, y_train, x_test, y_test, net, norm_constant = nbeats_dataframe(full_df, forecast_len, in_sample=True,device=device)
@@ -445,7 +444,7 @@ def train_models(train, models,forecast_len, full_df=None,seasonality="infer_fro
   return models_dict, seasons
 
 def forecast_models(models_dict, forecast_len, freq, df, in_sample=True, GPU=False): # test here means any df
-
+  global fb
   forecast_dict = {}
   for name, model in models_dict.items():
     if in_sample:
@@ -458,6 +457,8 @@ def forecast_models(models_dict, forecast_len, freq, df, in_sample=True, GPU=Fal
       future = model.make_future_dataframe(periods=forecast_len,freq=freq)
       future_pred = model.predict(future)
       forecast_dict[name] = original_dataframe(future_pred,freq)[-forecast_len:]
+      fb = original_dataframe(future_pred,freq)[-forecast_len:]
+
     if name=="HWAAS":
       forecast_dict[name] = model.forecast(forecast_len)
       #hw = model.forecast(forecast_len)
@@ -528,7 +529,8 @@ def forecast_frame_outsample(forecast_dict,df,forecast_len,index):
     for name, forecast in forecast_dict.items():
       ra += 1
       if ra==0:
-        outsample = pd.DataFrame(forecast,columns=[name],index=index)
+        outsample = pd.DataFrame(data=forecast,columns=[name],index=index)
+        outsample[name] = forecast
       else:
         outsample[name] = forecast
     return outsample 
