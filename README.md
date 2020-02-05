@@ -1,6 +1,6 @@
 # Automated Time Series Models in Python (AtsPy)
 
-Easily develop state of the art time series models to forecast the future values of a data series. Simply load your data and select which models you want to test. This is the largest repository of automated structural and machine learning time series models. Please get in contact if you want to contribute a model.  
+Easily develop state of the art time series models to forecast univariate data series. Simply load your data and select which models you want to test. This is the largest repository of automated structural and machine learning time series models. Please get in contact if you want to contribute a model. This is a fledgling project, all advice appreciated. 
 
 #### Install
 ```
@@ -13,7 +13,6 @@ pip install atspy
 1. ```Prophet``` - Modeling Multiple Seasonality With Linear or Non-linear Growth
 1. ```HWAAS``` - Exponential Smoothing With Additive Trend and Additive Seasonality
 1. ```HWAMS``` - Exponential Smoothing with Additive Trend and Multiplicative Seasonality
-1. ```PYAF``` - Feature Generating Model (slow and underforms)
 1. ```NBEATS``` -  Neural basis expansion analysis (now fixed at 20 Epochs)
 1. ```Gluonts``` - RNN-based Model (now fixed at 20 Epochs)
 1. ```TATS``` - Seasonal and Trend no Box Cox
@@ -25,18 +24,18 @@ pip install atspy
 #### Why AtsPy?
 
 1. Implements all your favourite automated time series models in a unified manner by simply running ```AutomatedModel(df)```.
-1. Reduce structural model errors with 30-50% by using LightGBM with TSFresh infused features.  
+1. Reduce structural model errors with 30%-50% by using LightGBM with TSFresh infused features.  
 1. Automatically identify the seasonalities in your data using singular spectrum analysis, periodograms, and peak analysis.
-1. Identifies and makes accessible the best model for your time series using in sample validation methods.  
+1. Identifies and makes accessible the best model for your time series using in-sample validation methods.  
 1. Combines the predictions of all these models in a simple (average) and complex (GBM) ensembles for improved performance.
 1. Where appropriate models have been developed to use GPU resources to speed up the automation process.
-1. Easily access all the models by using ```am.models_dict_in``` for in sample and ```am.models_dict_out``` for out of sample.
+1. Easily access all the models by using ```am.models_dict_in``` for in-sample and ```am.models_dict_out``` for out-of-sample prediction.
 
 #### AtsPy Progress 
 
-1. Univariate forecasting only (single column) and only for monthly data (daily data will be available soon). 
-1. So far I have only tested monthly data and only one particular dataseries. 
+1. Univariate forecasting only (single column) and only monthly and daily data have been tested for suitability.  
 1. More work ahead; all suggestions and criticisms appreciated, use the issues tab.
+1. **Here** is a **[Google Colab](https://colab.research.google.com/drive/1WzwxUlAKg-WiEm_SleAzBIV6rs5VY_3W)** to run the package in the cloud and **[here you can run all the models](https://colab.research.google.com/drive/14QVrnVtT434s-xYcalHFlQg-o658nekv)**.
 
 
 ### Documentation by Example
@@ -49,14 +48,13 @@ from atspy import AutomatedModel
 
 #### Pandas DataFrame
 
-The data requires strict preprocessing, no periods can be skipped and there can not be an empty values. 
+The data requires strict preprocessing, no periods can be skipped and there cannot be any empty values. 
 
 ```python
 import pandas as pd
 df = pd.read_csv("https://raw.githubusercontent.com/firmai/random-assets-two/master/ts/monthly-beer-australia.csv")
 df.Month = pd.to_datetime(df.Month)
-df = df.set_index("Month")
-df 
+df = df.set_index("Month"); df
 ```
 <table class="dataframe">
   <thead>
@@ -117,16 +115,14 @@ df
 
 
 
-
-
-#### AtsPy AutomatedModel
+#### AutomatedModel
 
 1. ```AutomatedModel``` - Returns a class instance.
-1. ```forecast_insample``` - Returns an in sample forcasted dataframe and performance.  
-1. ```forecast_outsample``` - Returns an out of sample forcasted dataframe.
+1. ```forecast_insample``` - Returns an in-sample forcasted dataframe and performance.  
+1. ```forecast_outsample``` - Returns an out-of-sample forcasted dataframe.
 1. ```ensemble``` - Returns the results of three different forms of ensembles.
-1. ```models_dict_in``` - Returns a dictionary of the fully trained in sample models.
-1. ```models_dict_out``` - Returns a dictionary of the fully trained out of sample models.
+1. ```models_dict_in``` - Returns a dictionary of the fully trained in-sample models.
+1. ```models_dict_out``` - Returns a dictionary of the fully trained out-of-sample models.
 
 ```python
 from atspy import AutomatedModel
@@ -134,9 +130,11 @@ model_list = ["HWAMS","HWAAS","TBAT"]
 am = AutomatedModel(df = df , model_list=model_list,forecast_len=20 )
 ```
 
-Other models to try, add as many as you like, note ```ARIMA``` is slow: ```"ARIMA","Gluonts","PYAF","Prophet","NBEATS", "TATS", "TBATS1", "TBATP1", "TBATS2"```
+Other models to try, **add as many as you like**; note ```ARIMA``` is slow: ```["ARIMA","Gluonts","Prophet","NBEATS", "TATS", "TBATS1", "TBATP1", "TBATS2"]```
 
-##### In Sample Performance
+
+
+#### In-Sample Performance
 ```python
 forecast_in, performance = am.forecast_insample()
 ```
@@ -180,7 +178,8 @@ performance
   </tbody>
 </table>
 
-##### Out of Sample Forecast
+
+#### Out-of-Sample Forecast
 
 ```python
 forecast_out = am.forecast_outsample(); forecast_out
@@ -235,7 +234,8 @@ forecast_out = am.forecast_outsample(); forecast_out
   </tbody>
 </table>
 
-##### Ensemble and Second Model Validation Performance
+
+#### Ensemble and Model Validation Performance
 
 ```python
 all_ensemble_in, all_ensemble_out, all_performance = am.ensemble(forecast_in, forecast_out)
@@ -325,14 +325,15 @@ all_performance
 </table>
 
 
-##### Best Performing Insample
+#### Best Performing In-sample
 
 ```python
 all_ensemble_in[["Target","ensemble_lgb__X__HWAMS","HWAMS","HWAAS"]].plot()
 ```
 ![png](atspy_files/insample.png)
 
-##### Future Prediction
+
+#### Future Predictions All Models
 
 ```python
 all_ensemble_out[["ensemble_lgb__X__HWAMS","HWAMS","HWAAS"]].plot()
@@ -340,9 +341,50 @@ all_ensemble_out[["ensemble_lgb__X__HWAMS","HWAMS","HWAAS"]].plot()
 ![png](atspy_files/outsample.png)
 
 
+
+#### And Finally Grab the Models
+
+```
+am.models_dict_in
+```
+
+
+
+
+    {'HWAAS': <statsmodels.tsa.holtwinters.HoltWintersResultsWrapper at 0x7f42f7822d30>,
+     'HWAMS': <statsmodels.tsa.holtwinters.HoltWintersResultsWrapper at 0x7f42f77fff60>,
+     'TBAT': <tbats.tbats.Model.Model at 0x7f42d3aab048>}
+
+
+
+
+```
+am.models_dict_out
+```
+
+
+
+
+    {'HWAAS': <statsmodels.tsa.holtwinters.HoltWintersResultsWrapper at 0x7f9c01309278>,
+     'HWAMS': <statsmodels.tsa.holtwinters.HoltWintersResultsWrapper at 0x7f9c01309cf8>,
+     'TBAT': <tbats.tbats.Model.Model at 0x7f9c08f18ba8>}
+
+
+
+
+
+Follow [this link](https://colab.research.google.com/drive/1WzwxUlAKg-WiEm_SleAzBIV6rs5VY_3W) if you want to run the package in the cloud. 
+
+
 #### AtsPy Future Development
 
 1. Additional in-sample validation steps to stop deep learning models from over and underfitting. 
+1. Extra performance metrics like MAPE and MAE. 
+1. Improved methods to select the window lenght to use in training and calibrating the model. 
+1. Add the ability to accept dirty data, and have the ability to clean it up, inetrpolation etc. 
+1. Add a function to resample to a larger frequency for big datasets.
+1. Add the ability to algorithmically select a good enough chunk of a large dataset to balance performance and time to train. 
+1. More internal model optimisation using AIC, BIC an AICC. 
 1. Code annotations for other developers to follow and improve on the work being done. 
 1. Force seasonality stability between in and out of sample training models.
 1. Make AtsPy less dependency heavy, currently it draws on tensorflow, pytorch and mxnet. 
