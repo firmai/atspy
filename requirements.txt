@@ -346,7 +346,7 @@ tblib==1.6.0
 tensor2tensor==1.14.1
 tensorboard==1.15.0
 tensorboardcolab==0.0.22
-tensorflow==1.15.0
+tensorflow==1.15.2
 tensorflow-datasets==2.0.0
 tensorflow-estimator==1.15.1
 tensorflow-gan==2.0.0
