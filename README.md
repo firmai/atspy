@@ -379,6 +379,12 @@ Follow [this link](https://colab.research.google.com/drive/1WzwxUlAKg-WiEm_SleAz
 #### AtsPy Future Development
 
 1. Additional in-sample validation steps to stop deep learning models from over and underfitting. 
+1. Extra performance metrics like MAPE and MAE. 
+1. Improved methods to select the window lenght to use in training and calibrating the model. 
+1. Add the ability to accept dirty data, and have the ability to clean it up, inetrpolation etc. 
+1. Add a function to resample to a larger frequency for big datasets.
+1. Add the ability to algorithmically select a good enough chunk of a large dataset to balance performance and time to train. 
+1. More internal model optimisation using AIC, BIC an AICC. 
 1. Code annotations for other developers to follow and improve on the work being done. 
 1. Force seasonality stability between in and out of sample training models.
 1. Make AtsPy less dependency heavy, currently it draws on tensorflow, pytorch and mxnet. 
