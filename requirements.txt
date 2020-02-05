@@ -300,7 +300,7 @@ python-slugify==4.0.0
 python-utils==2.3.0
 pytz==2018.9
 PyWavelets==1.1.1
-PyYAML==3.13
+PyYAML==5.1
 pyzmq==17.0.0
 qtconsole==4.6.0
 regex==2019.12.20
