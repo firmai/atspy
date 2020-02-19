@@ -1,5 +1,7 @@
 # Automated Time Series Models in Python (AtsPy)
 
+[![Downloads](https://pepy.tech/badge/atspy)](https://pepy.tech/project/atspy)
+
 Easily develop state of the art time series models to forecast univariate data series. Simply load your data and select which models you want to test. This is the largest repository of automated structural and machine learning time series models. Please get in contact if you want to contribute a model. This is a fledgling project, all advice appreciated. 
 
 #### Install
