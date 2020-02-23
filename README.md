@@ -393,3 +393,20 @@ Follow [this link](https://colab.research.google.com/drive/1WzwxUlAKg-WiEm_SleAz
 
 
 
+## Citations
+
+If you use alibi-detect in your research, please consider citing it.
+
+BibTeX entry:
+
+```
+@software{alibi-detect,
+  title = {{AtsPy}: Automated Time Series Models in Python.},
+  author = {Snow, Derek},
+  url = {https://github.com/firmai/atspy/},
+  version = {1.15},
+  date = {2020-02-17},
+}
+```
+
+
