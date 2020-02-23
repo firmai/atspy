@@ -395,7 +395,7 @@ Follow [this link](https://colab.research.google.com/drive/1WzwxUlAKg-WiEm_SleAz
 
 ## Citations
 
-If you use alibi-detect in your research, please consider citing it.
+If you use AtsPy in your research, please consider citing it.
 
 BibTeX entry:
 
