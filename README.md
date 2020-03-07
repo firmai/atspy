@@ -400,7 +400,7 @@ If you use AtsPy in your research, please consider citing it.
 BibTeX entry:
 
 ```
-@software{alibi-detect,
+@software{atspy,
   title = {{AtsPy}: Automated Time Series Models in Python.},
   author = {Snow, Derek},
   url = {https://github.com/firmai/atspy/},
