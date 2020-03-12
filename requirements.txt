@@ -16,7 +16,7 @@ numexpr==2.7.1
 pandas==0.25.3
 pip-tools==4.2.0
 pmdarima==1.5.2
-psutil==5.4.8
+psutil==5.6.6
 psycopg2==2.7.6.1
 scikit-learn==0.22.1
 scipy==1.4.1
