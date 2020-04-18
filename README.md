@@ -382,8 +382,8 @@ Follow [this link](https://colab.research.google.com/drive/1WzwxUlAKg-WiEm_SleAz
 
 1. Additional in-sample validation steps to stop deep learning models from over and underfitting. 
 1. Extra performance metrics like MAPE and MAE. 
-1. Improved methods to select the window lenght to use in training and calibrating the model. 
-1. Add the ability to accept dirty data, and have the ability to clean it up, inetrpolation etc. 
+1. Improved methods to select the window length to use in training and calibrating the model. 
+1. Add the ability to accept dirty data, and have the ability to clean it up, interpolation etc. 
 1. Add a function to resample to a larger frequency for big datasets.
 1. Add the ability to algorithmically select a good enough chunk of a large dataset to balance performance and time to train. 
 1. More internal model optimisation using AIC, BIC an AICC. 
