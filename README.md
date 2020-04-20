@@ -94,6 +94,31 @@ df = df.set_index("Month"); df
   </tbody>
 </table>
 
+
+#### AutomatedModel
+
+1. ```AutomatedModel``` - Returns a class instance.
+1. ```forecast_insample``` - Returns an in-sample forcasted dataframe and performance.  
+1. ```forecast_outsample``` - Returns an out-of-sample forcasted dataframe.
+1. ```ensemble``` - Returns the results of three different forms of ensembles.
+1. ```models_dict_in``` - Returns a dictionary of the fully trained in-sample models.
+1. ```models_dict_out``` - Returns a dictionary of the fully trained out-of-sample models.
+
+```python
+from atspy import AutomatedModel
+model_list = ["HWAMS","HWAAS","TBAT"]
+am = AutomatedModel(df = df , model_list=model_list,forecast_len=20 )
+```
+
+Other models to try, **add as many as you like**; note ```ARIMA``` is slow: ```["ARIMA","Gluonts","Prophet","NBEATS", "TATS", "TBATS1", "TBATP1", "TBATS2"]```
+
+
+
+#### In-Sample Performance
+```python
+forecast_in, performance = am.forecast_insample(); forecast_in
+```
+
 <table class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -150,32 +175,6 @@ df = df.set_index("Month"); df
   </tbody>
 </table>
 
-
-
-
-#### AutomatedModel
-
-1. ```AutomatedModel``` - Returns a class instance.
-1. ```forecast_insample``` - Returns an in-sample forcasted dataframe and performance.  
-1. ```forecast_outsample``` - Returns an out-of-sample forcasted dataframe.
-1. ```ensemble``` - Returns the results of three different forms of ensembles.
-1. ```models_dict_in``` - Returns a dictionary of the fully trained in-sample models.
-1. ```models_dict_out``` - Returns a dictionary of the fully trained out-of-sample models.
-
-```python
-from atspy import AutomatedModel
-model_list = ["HWAMS","HWAAS","TBAT"]
-am = AutomatedModel(df = df , model_list=model_list,forecast_len=20 )
-```
-
-Other models to try, **add as many as you like**; note ```ARIMA``` is slow: ```["ARIMA","Gluonts","Prophet","NBEATS", "TATS", "TBATS1", "TBATP1", "TBATS2"]```
-
-
-
-#### In-Sample Performance
-```python
-forecast_in, performance = am.forecast_insample()
-```
 
 ```python
 performance
