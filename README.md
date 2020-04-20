@@ -58,6 +58,42 @@ df = pd.read_csv("https://raw.githubusercontent.com/firmai/random-assets-two/mas
 df.Month = pd.to_datetime(df.Month)
 df = df.set_index("Month"); df
 ```
+
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Megaliters</th>
+    </tr>
+    <tr>
+      <th>Month</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1956-01-01</th>
+      <td>93.2</td>
+    </tr>
+    <tr>
+      <th>1956-02-01</th>
+      <td>96.0</td>
+    </tr>
+    <tr>
+      <th>1956-03-01</th>
+      <td>95.2</td>
+    </tr>
+    <tr>
+      <th>1956-04-01</th>
+      <td>77.1</td>
+    </tr>
+    <tr>
+      <th>1956-05-01</th>
+      <td>70.9</td>
+    </tr>
+  </tbody>
+</table>
+
 <table class="dataframe">
   <thead>
     <tr style="text-align: right;">
