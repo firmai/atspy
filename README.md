@@ -430,7 +430,7 @@ Follow [this link](https://colab.research.google.com/drive/1WzwxUlAKg-WiEm_SleAz
 
 ## Citations
 
-If you use AtsPy in your research, please consider citing it.
+If you use AtsPy in your research, please consider citing it. I have also written a [small report](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3580631) that can be found on SSRN. 
 
 BibTeX entry:
 
@@ -441,6 +441,15 @@ BibTeX entry:
   url = {https://github.com/firmai/atspy/},
   version = {1.15},
   date = {2020-02-17},
+}
+```
+
+```
+@misc{atspy,
+  author = {Snow, Derek},
+  title = {{AtsPy}: Automated Time Series Models in Python (1.15).},
+  year  = {2020},
+  url   = {https://github.com/firmai/atspy/},
 }
 ```
 
