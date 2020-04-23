@@ -1,0 +1,164 @@
+
+1.	##### **Model Interpretability**
+  *	Model Respecification 
+	
+Protected Values Prediction
+Model Constraints
+Hyperparameter Modelling
+Interpretable Model
+Global Explanations
+Level Two Monotonicity Feature Explanations
+
+
+  *	Quantitative Validation 
+Level Two Monotonicity
+Relationship Analysis
+Partial Dependence (LV1) Monotonicity
+Feature Interaction
+Metrics
+
+1.	##### **Model Robustness**
+  *	Residual Deviation
+  *	Residual Explanations
+  *	Benchmark Competition
+  *	Adversarial Attack
+
+1.	##### **Regulatory Fairness**
+  *	Group
+Disparate Error Analysis
+	Parity Indicators
+	Fair Lending Measures
+Model Agnostic Processing
+	Reweighing Preprocessing
+	Disparate Impact Preprocessing
+	Calibrate Equalized Odds
+Feature Decomposition	
+  *	Individual
+        1. Reasoning
+            * Individual Disparity
+            * Reasoning Codes
+        1. Example Based
+	    * Prototypical
+            * Counterfactual
+            * Contrastive
+
+
+
+
+
+
+#### [Table Processing](#scrollTo=VO6NxvYjofas&line=1&uniqifier=1)
+  -	[Configure Pandas](#configure-pandas)
+  -	[Data Frame Formatting](#data-frame-formatting)
+  -	[Data Frames for Testing](#data-frames-for-testing)
+  -	[Lower Case Columns](#lower-case-columns)
+  -	[Front and Back Column Selection](#front-and-back-columns)
+  -	[Fast Data Frame Split](#fast-data-frame-split)
+  -	[Create Features and Labels List](#create-features-and-labels-list)
+  -	[Short Basic Commands](#short-basic-commands)
+  -	[Read Commands](#read-commands)
+  -	[Create Ordered Categories](#create-ordered-categories)
+  -	[Select Columns Based on Regex](#select-columns-based-on-regex)
+  -	[Accessing Group of Groupby Object](#accessing-group-of-groupby-object)
+  -	[Multiple External Selection Criteria](#multiple-external-selection-criteria)
+  -	[Memory Reduction Script](#memory-reduction-script)
+  -	[Verify Primary Key](#verify-primary-key)
+  -	[Shift Columns to Front](#shift-columns-to-front)
+  -	[Multiple Column Assignment](#multiple-column-assignment)
+  -	[Method Changing Technique](#method-chaning-event)
+  -	[Load Multiple Files](#load-multiple-files)
+  -	[Drop Rows and Column Substring](#drop-rows-and-column-substring)
+  -	[Explode a Column](#explode-a-column)
+  -	[Nest List Back into Column](#nest-list-back-into-column)
+  -	[Split Cells with List](#split-cells-with-list)
+
+
+#### [Table Exploration](#table-exploration)
+
+  -	[Groupby Functionality](#groupby-functionality)
+  -	[Cross Correlation Series Without Duplicates](#cross-correlation-series-without-duplicates)
+  -	[Missing Data Report](#missing-data-report)
+  -	[Duplicated Rows Report](#duplicated-rows-report)
+  -	[Skewness](#skewness)
+
+
+#### [Feature Processing](#feature-processing)
+
+  -	[Replace Infrequently Occurring Categories](#replace-infrequently-occuring-categories)
+  -	[Quasi-Constant Feature Detection](#quasi-constant-feature-detection)
+  -	[Filling Missing Values Separately](#filling-missing-values-separately)
+  -	[Conditioned Column Value Replacement](#conditioned-column-value-replacement)
+  -	[Remove Non-numeric Values in Data Frame](#remove-non-numeric-values-in-data-frame)
+  -	[Feature Scaling, Normalisation, Standardisation](#feature-scaling-normalisation-standardisation)
+
+
+#### [Feature Engineering](#feature-engineering)
+
+  -	[Automated Dummy Encoding](#automate-dummy-encodings)
+  -	[Binarise Empty Columns](#binarise-empty-columns)
+  -	[Polynomials](#polynomials)
+  -	[Transformations](#transformations)
+  -	[Genetic Programming](#genetic-programming)
+  -	[Principal Component](#principal-component)
+  -	[Multiple Lags](#multiple-lags)
+  -	[Multiple Rolling](#multiple-rolling)
+  -	[Date Features](#data-features)
+  -	[Haversine Distance](#havervsine-distance)
+  -	[Parse Address](#parse-address)
+  -	[Processing Strings in Pandas](#processing-strings-in-pandas)
+  -	[Filtering Strings in Pandas](#filtering-strings-in-pandas)
+
+
+#### [Model Validation](#scrollTo=VO6NxvYjofas&line=1&uniqifier=1)
+
+  -	[Classification Metrics](#classification-metrics)
+
+
+
+
+
+I currently have you listed as a potential contributing member to Medium FirmAI.Is this something you would be interested in? For contributors - https://medium.com/firmai/example-3a-short-format-bulletin-7cbd94d8754c
+
+. Our first publications would be from Vasant Dhar and Foster Provost. Is this something you would be interested in? For contributors - https://medium.com/firmai/example-3a-short-format-bulletin-7cbd94d8754c and for quality examples https://medium.com/@derek_snow/quality-post-examples-f52a887ecb35
+
+I currently have you listed as a potential contributing member to Medium FirmAI. Is this something you would be interested in? Contributing Fields - https://medium.com/firmai/example-3a-short-format-bulletin-7cbd94d8754c  - Our first contributors are Vasant Dhar, Foster Provost, and Isil Erel.
+
+Hi, I listed you as a potential contributor to Medium FirmAI. Is this something you would be interested in? Contributing Fields - https://medium.com/firmai/example-3a-short-format-bulletin-7cbd94d8754c  - Our first contributors are Vasant Dhar, Foster Provost, and Isil Erel; starting 4 May.
+
+
+
+
+
+
+
+
+
+
+
+
+#### overall performance
+'Prevalence   ': '(tp + fn) / (tp + tn +fp + fn)', # how much default actually happens for this group
+#'Adverse Impact': '(tp + fp) / (tp + tn + fp + fn)', # how often the model predicted default for each group   
+'Accuracy   ':       '(tp + tn) / (tp + tn + fp + fn)', # how often the model predicts default and non-default correctly for this group
+
+#### predicting default will happen
+# (correctly)
+'True Positive Rate   ': 'tp / (tp + fn)',  # out of the people in the group *that did* default, how many the model predicted *correctly* would default              
+'Precision   ':          'tp / (tp + fp)',  # out of the people in the group the model *predicted* would default, how many the model predicted *correctly* would default
+
+#### predicting default won't happen
+# (correctly)
+'Specificity   ':              'tn / (tn + fp)', # out of the people in the group *that did not* default, how many the model predicted *correctly* would not default
+'Negative Predicted Value   ': 'tn / (tn + fn)', # out of the people in the group the model *predicted* would not default, how many the model predicted *correctly* would not default  
+
+#### analyzing errors - type I
+# false accusations 
+'False Positive Rate   ':  'fp / (tn + fp)', # out of the people in the group *that did not* default, how many the model predicted *incorrectly* would default
+'False Discovery Rate   ': 'fp / (tp + fp)', # out of the people in the group the model *predicted* would default, how many the model predicted *incorrectly* would default
+
+#### analyzing errors - type II
+# costly ommisions
+'False Negative Rate   ': 'fn / (tp + fn)', # out of the people in the group *that did* default, how many the model predicted *incorrectly* would not default
+'False Omissions Rate   ':'fn / (tn + fn)'  # out of the people in the group the model *predicted* would not default, how many the model predicted *incorrectly* would not default
+}   
+
