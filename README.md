@@ -1,5 +1,9 @@
 # Automated Time Series Models in Python (AtsPy)
 
+[![Downloads](https://pepy.tech/badge/atspy)](https://pepy.tech/project/atspy)
+
+[SSRN Report](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3580631)
+
 Easily develop state of the art time series models to forecast univariate data series. Simply load your data and select which models you want to test. This is the largest repository of automated structural and machine learning time series models. Please get in contact if you want to contribute a model. This is a fledgling project, all advice appreciated. 
 
 #### Install
@@ -56,6 +60,67 @@ df = pd.read_csv("https://raw.githubusercontent.com/firmai/random-assets-two/mas
 df.Month = pd.to_datetime(df.Month)
 df = df.set_index("Month"); df
 ```
+
+<table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Megaliters</th>
+    </tr>
+    <tr>
+      <th>Month</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1956-01-01</th>
+      <td>93.2</td>
+    </tr>
+    <tr>
+      <th>1956-02-01</th>
+      <td>96.0</td>
+    </tr>
+    <tr>
+      <th>1956-03-01</th>
+      <td>95.2</td>
+    </tr>
+    <tr>
+      <th>1956-04-01</th>
+      <td>77.1</td>
+    </tr>
+    <tr>
+      <th>1956-05-01</th>
+      <td>70.9</td>
+    </tr>
+  </tbody>
+</table>
+
+
+#### AutomatedModel
+
+1. ```AutomatedModel``` - Returns a class instance.
+1. ```forecast_insample``` - Returns an in-sample forcasted dataframe and performance.  
+1. ```forecast_outsample``` - Returns an out-of-sample forcasted dataframe.
+1. ```ensemble``` - Returns the results of three different forms of ensembles.
+1. ```models_dict_in``` - Returns a dictionary of the fully trained in-sample models.
+1. ```models_dict_out``` - Returns a dictionary of the fully trained out-of-sample models.
+
+```python
+from atspy import AutomatedModel
+model_list = ["HWAMS","HWAAS","TBAT"]
+am = AutomatedModel(df = df , model_list=model_list,forecast_len=20 )
+```
+
+Other models to try, **add as many as you like**; note ```ARIMA``` is slow: ```["ARIMA","Gluonts","Prophet","NBEATS", "TATS", "TBATS1", "TBATP1", "TBATS2"]```
+
+
+
+#### In-Sample Performance
+```python
+forecast_in, performance = am.forecast_insample(); forecast_in
+```
+
 <table class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -112,32 +177,6 @@ df = df.set_index("Month"); df
   </tbody>
 </table>
 
-
-
-
-#### AutomatedModel
-
-1. ```AutomatedModel``` - Returns a class instance.
-1. ```forecast_insample``` - Returns an in-sample forcasted dataframe and performance.  
-1. ```forecast_outsample``` - Returns an out-of-sample forcasted dataframe.
-1. ```ensemble``` - Returns the results of three different forms of ensembles.
-1. ```models_dict_in``` - Returns a dictionary of the fully trained in-sample models.
-1. ```models_dict_out``` - Returns a dictionary of the fully trained out-of-sample models.
-
-```python
-from atspy import AutomatedModel
-model_list = ["HWAMS","HWAAS","TBAT"]
-am = AutomatedModel(df = df , model_list=model_list,forecast_len=20 )
-```
-
-Other models to try, **add as many as you like**; note ```ARIMA``` is slow: ```["ARIMA","Gluonts","Prophet","NBEATS", "TATS", "TBATS1", "TBATP1", "TBATS2"]```
-
-
-
-#### In-Sample Performance
-```python
-forecast_in, performance = am.forecast_insample()
-```
 
 ```python
 performance
@@ -380,8 +419,8 @@ Follow [this link](https://colab.research.google.com/drive/1WzwxUlAKg-WiEm_SleAz
 
 1. Additional in-sample validation steps to stop deep learning models from over and underfitting. 
 1. Extra performance metrics like MAPE and MAE. 
-1. Improved methods to select the window lenght to use in training and calibrating the model. 
-1. Add the ability to accept dirty data, and have the ability to clean it up, inetrpolation etc. 
+1. Improved methods to select the window length to use in training and calibrating the model. 
+1. Add the ability to accept dirty data, and have the ability to clean it up, interpolation etc. 
 1. Add a function to resample to a larger frequency for big datasets.
 1. Add the ability to algorithmically select a good enough chunk of a large dataset to balance performance and time to train. 
 1. More internal model optimisation using AIC, BIC an AICC. 
@@ -389,5 +428,31 @@ Follow [this link](https://colab.research.google.com/drive/1WzwxUlAKg-WiEm_SleAz
 1. Force seasonality stability between in and out of sample training models.
 1. Make AtsPy less dependency heavy, currently it draws on tensorflow, pytorch and mxnet. 
 
+
+
+## Citations
+
+If you use AtsPy in your research, please consider citing it. I have also written a [small report](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3580631) that can be found on SSRN. 
+
+BibTeX entry:
+
+```
+@software{atspy,
+  title = {{AtsPy}: Automated Time Series Models in Python.},
+  author = {Snow, Derek},
+  url = {https://github.com/firmai/atspy/},
+  version = {1.15},
+  date = {2020-02-17},
+}
+```
+
+```
+@misc{atspy,
+  author = {Snow, Derek},
+  title = {{AtsPy}: Automated Time Series Models in Python (1.15).},
+  year  = {2020},
+  url   = {https://github.com/firmai/atspy/},
+}
+```
 
 
