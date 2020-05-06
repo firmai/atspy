@@ -36,40 +36,8 @@ method can be used to automate predictions.
 
 Can be seen as a univariate instantiation of GluonTS with an emphasis on model diversity. 
 AtsPy is built on top of Auto-Arima, TBATS, Prophet, and GluonTS. It is an extremely fast
-method to test which model best fits your data \cite{atspy}. AtsPy's final innovation is
+method to test which model best fits your data. AtsPy's final innovation is
 an ensemble time series protocol developed with the LightGBM flavour Gradient Boosting Machine
 and extracted time series features. 
 
-# References
-
-```
-@article{alexandrov2019gluonts,
-  title={Gluonts: Probabilistic time series models in python},
-  author={Alexandrov, Alexander and Benidis, Konstantinos and Bohlke-Schneider, Michael and Flunkert, Valentin and Gasthaus, Jan and Januschowski, Tim and Maddix, Danielle C and Rangapuram, Syama and Salinas, David and Schulz, Jasper and others},
-  journal={arXiv preprint arXiv:1906.05264},
-  year={2019}
-}
- ```
- 
- 
-```
-@article{taylor2018prophet,
-  title={Prophet: forecasting at scale. Facebook Research},
-  author={Taylor, SJ and Letham, B},
-  year={2018}
-}
-```
-
-```
-@article{de2011forecasting,
-  title={Forecasting time series with complex seasonal patterns using exponential smoothing},
-  author={De Livera, Alysha M and Hyndman, Rob J and Snyder, Ralph D},
-  journal={Journal of the American statistical association},
-  volume={106},
-  number={496},
-  pages={1513--1527},
-  year={2011},
-  publisher={Taylor \& Francis}
-}
-```
 
