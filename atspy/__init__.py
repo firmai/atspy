@@ -127,7 +127,7 @@ def infer_periodocity(train):
     periodocity = 5
   elif perd=="D":
     periodocity = 7
-  elif perd=="W":
+  elif perd in ["W","W-SUN","W-MON","W-TUE","W-WED","W-THU","W-FRI","W-SAT"]:
     periodocity = 52
   elif perd in ["Q","QS","BQ","BQS"]:
     periodocity = 4
@@ -577,7 +577,7 @@ def time_feature(df,perd):
     df["dayofweek"] = df.index.dayofweek
   elif perd=="D":
     df["dayofweek"] = df.index.dayofweek
-  elif perd=="W":
+  elif perd in ["W","W-SUN","W-MON","W-TUE","W-WED","W-THU","W-FRI","W-SAT"]:
     df["week"] = df.index.week
   elif perd in ["Q","QS","BQ","BQS"]:
     df["quarter"] = df.index.quarter
