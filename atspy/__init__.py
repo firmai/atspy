@@ -186,8 +186,11 @@ def infer_periodocity(train):
   elif _contains_period(["N"], period):
       multiplier = _extract_period_multiplier(["N"], period)
       periodicity = 1000 / multiplier
+  else:
+      raise ValueError(f"Periodicity of {period} not yet implemented. Please create a pull request.")
 
-  return periodicity
+  return int(periodicity)
+
 
 def select_seasonality(train, season):
   if season == "periodocity":
