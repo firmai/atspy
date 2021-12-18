@@ -6,9 +6,9 @@
 
 ---------
 
-## Sponsor Sov.ai Research Lab
-
-Animated investment research at [Sov.ai](https://sov.ai), sponsoring open source initiatives.
+Finance Quant Machine Learning
+------------------
+- [ML-Quant.com](https://www.ml-quant.com/)  -  Automated Research Repository 
 
 ---------
 
