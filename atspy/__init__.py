@@ -118,33 +118,79 @@ def infer_seasonality(train,index=0): ##skip the first one, normally
     return season
 
 def infer_periodocity(train):
-  perd = pd.infer_freq(train.index)
-  if perd in ["MS","M","BM","BMS"]:
-    periodocity = 12
-  elif perd in ["BH","H"]:
-    periodocity = 24
-  elif perd=="B":
-    periodocity = 5
-  elif perd=="D":
-    periodocity = 7
-  elif perd in ["W","W-SUN","W-MON","W-TUE","W-WED","W-THU","W-FRI","W-SAT"]:
-    periodocity = 52
-  elif perd in ["Q","QS","BQ","BQS"]:
-    periodocity = 4
-  elif perd in ["A","BA","AS","BAS"]:
-    periodocity = 10
-  elif perd in ["T","min"]:
-    periodocity = 60
-  elif perd=="S":
-    periodocity = 60
-  elif perd in ["L","ms"]:
-    periodocity = 1000
-  elif perd in ["U","us"]:
-    periodocity = 1000
-  elif perd=="N":
-    periodocity = 1000
+  from typing import List
 
-  return periodocity 
+  def _contains_period(identifiers: List[str], period) -> bool:
+      """ Check if any of the identifiers """
+      # Strip numbers from period
+      period = "".join(filter(lambda char: not char.isnumeric(), period))
+
+      # Compare
+      return any(map(lambda identifier: identifier == period, identifiers))
+
+  def _extract_period_multiplier(identifiers: List[str], period: str) -> int:
+      """ Strip the identifier from the period-string in order to receive the numeric part """
+      for identifier in identifiers:
+          if identifier in period:
+              if len(period) > len(identifier):
+                  return int(period.strip(identifier))
+              else:
+                  return 1
+
+  period = pd.infer_freq(train.index)
+  if _contains_period(["MS", "M", "BM", "BMS"], period):
+      multiplier = _extract_period_multiplier(["MS", "M", "BM", "BMS"], period)
+      periodicity = 12 / multiplier
+
+  elif _contains_period(["BH", "H"], period):
+      multiplier = _extract_period_multiplier(["BH", "H"], period)
+      periodicity = 24 / multiplier
+
+  elif _contains_period(["B"], period):
+      multiplier = _extract_period_multiplier(["B"], period)
+      periodicity = 5 / multiplier
+
+  elif _contains_period(["D"], period):
+      multiplier = _extract_period_multiplier(["D"], period)
+      periodicity = 7 / multiplier
+
+  elif _contains_period(["W", "W-SUN", "W-MON", "W-TUE", "W-WED", "W-THU", "W-FRI", "W-SAT"], period):
+      multiplier = _extract_period_multiplier(["W", "W-SUN", "W-MON", "W-TUE", "W-WED", "W-THU", "W-FRI", "W-SAT"],
+                                              period)
+      periodicity = 52 / multiplier
+
+  elif _contains_period(["Q", "QS", "BQ", "BQS"], period):
+      multiplier = _extract_period_multiplier(["Q", "QS", "BQ", "BQS"], period)
+      periodicity = 4 / multiplier
+
+  elif _contains_period(["A", "BA", "AS", "BAS"], period):
+      multiplier = _extract_period_multiplier(["A", "BA", "AS", "BAS"], period)
+      periodicity = 10 / multiplier
+
+  elif _contains_period(["T", "min"], period):
+      multiplier = _extract_period_multiplier(["T", "min"], period)
+      periodicity = 60 / multiplier
+
+  elif _contains_period(["S"], period):
+      multiplier = _extract_period_multiplier(["S"], period)
+      periodicity = 60 / multiplier
+
+  elif _contains_period(["L", "ms"], period):
+      multiplier = _extract_period_multiplier(["L", "ms"], period)
+      periodicity = 1000 / multiplier
+
+  elif _contains_period(["U", "us"], period):
+      multiplier = _extract_period_multiplier(["U", "us"], period)
+      periodicity = 1000 / multiplier
+
+  elif _contains_period(["N"], period):
+      multiplier = _extract_period_multiplier(["N"], period)
+      periodicity = 1000 / multiplier
+  else:
+      raise ValueError(f"Periodicity of {period} not yet implemented. Please create a pull request.")
+
+  return int(periodicity)
+
 
 def select_seasonality(train, season):
   if season == "periodocity":
