@@ -54,7 +54,7 @@ setup(name='atspy',
             "seasonal==0.3.1",
             "nbeats-pytorch==1.3.0",
             "gluonts==0.4.2",
-            "numpy==1.17.4",
+            "numpy==1.22.0",
             "pydantic==1.4"
             ],
             
