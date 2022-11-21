@@ -26,7 +26,7 @@ statsmodels==0.10.2
 sympy==1.1.1
 tbats==1.0.9
 tblib==1.6.0
-tensorflow==1.15.2
+tensorflow==2.9.3
 tflearn==0.3.2
 torch==1.4.0
 tqdm==4.28.1
